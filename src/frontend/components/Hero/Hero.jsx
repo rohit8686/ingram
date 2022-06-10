@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import hero from "../../images/hero.png";
+import { ToastContainer } from "react-toastify";
 
 export const Hero = () => {
   return (
@@ -41,6 +42,7 @@ export const Hero = () => {
             </p>
           </Link>
         </div>
+        <ToastContainer />
       </div>
     </>
   );
