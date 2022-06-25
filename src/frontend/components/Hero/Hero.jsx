@@ -1,11 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import hero from "../../images/hero.png";
 import { ToastContainer } from "react-toastify";
+import { SidebarContent } from "../SidebarContent/SidebarContent";
 
 export const Hero = () => {
+  const { showSidebar } = useSelector((state) => state.posts);
   return (
     <>
+      {showSidebar && (
+        <div className="p-2 md:w-1/4 md:hidden">
+          <SidebarContent />
+        </div>
+      )}
       <div className="flex p-5 flex-wrap sm:flex-nowrap">
         <img
           src={hero}
