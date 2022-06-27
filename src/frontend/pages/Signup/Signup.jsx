@@ -30,8 +30,11 @@ export const Signup = () => {
             e.preventDefault();
             const res = await dispatch(signup(user));
             if (res.type === "auth/signup/fulfilled") {
-              toastContainer("Signup Successfull", "success");
-              navigate("/");
+              setTimeout(
+                () => toastContainer("Signup Successfull", "success"),
+                200
+              );
+              navigate("/posts");
             }
           }}
         >

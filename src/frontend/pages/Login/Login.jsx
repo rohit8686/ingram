@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { clearErrorMsg } from "../../slice/authSlice";
 import { login } from "../../thunks/authThunks";
 import { toastContainer } from "../../toast/toast";
@@ -9,6 +9,8 @@ export const Login = () => {
   const { errorMsg } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [user, setUser] = useState({ username: "", password: "" });
 
   useEffect(() => {
@@ -25,8 +27,13 @@ export const Login = () => {
             e.preventDefault();
             const res = await dispatch(login(user));
             if (res.type === "auth/login/fulfilled") {
-              toastContainer("Login Successfull", "success");
-              navigate("/");
+              setTimeout(
+                () => toastContainer("Login Successfull", "success"),
+                200
+              );
+              navigate(location?.state?.from?.pathname || "/posts", {
+                replace: true,
+              });
             }
           }}
         >
