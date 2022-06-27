@@ -31,17 +31,17 @@ export const Login = () => {
                 () => toastContainer("Login Successfull", "success"),
                 200
               );
-              navigate(location?.state?.from?.pathname || "/posts", {
+              navigate(location?.state?.from?.pathname || "/home", {
                 replace: true,
               });
             }
           }}
         >
           <div className="pt-1">
-            <label htmlFor="email">Email : </label>
+            <label htmlFor="email">Email or Username : </label>
             <br />
             <input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="abcd@gmail.com"
@@ -72,7 +72,7 @@ export const Login = () => {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mt-4 py-1 px-4 border border-blue-700 cursor-pointer rounded text-sm text-center"
             onClick={() =>
-              setUser({ username: "rohit@gmail.com", password: "rohitrohit" })
+              setUser({ username: "Rohit", password: "rohitrohit" })
             }
           >
             Login with test credentials

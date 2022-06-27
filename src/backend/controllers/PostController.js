@@ -36,6 +36,28 @@ export const getPostHandler = function (schema, request) {
   }
 };
 
+export const getPostsByPageHandler = function (schema, request) {
+  const { pageNumber } = request.params;
+  try {
+    return new Response(
+      200,
+      {},
+      {
+        posts: this.db.posts.slice(0, pageNumber * 3),
+        totalPosts: this.db.posts.length,
+      }
+    );
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
 /**
  * This handler gets posts of a user in the db.
  * send GET Request at /api/posts/user/:username

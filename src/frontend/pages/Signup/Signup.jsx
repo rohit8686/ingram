@@ -42,7 +42,7 @@ export const Signup = () => {
             <label htmlFor="email">First name : </label>
             <br />
             <input
-              type="first-name"
+              type="text"
               name="first-name"
               id="first-name"
               placeholder="John"
@@ -57,7 +57,7 @@ export const Signup = () => {
             <label htmlFor="email">Last name : </label>
             <br />
             <input
-              type="last-name"
+              type="text"
               name="last-name"
               id="last-name"
               placeholder="Smith"
@@ -69,10 +69,10 @@ export const Signup = () => {
             />
           </div>
           <div className="pt-4">
-            <label htmlFor="email">Email : </label>
+            <label htmlFor="email">Email or Username : </label>
             <br />
             <input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="abcd@gmail.com"

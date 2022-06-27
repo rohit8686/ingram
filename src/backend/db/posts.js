@@ -8,10 +8,10 @@ import { formatDate } from "../utils/authUtils";
 
 export const posts = [
   {
-    _id: uuid(),
+    _id: 1,
     content: {
       postText:
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+        "Nothing is impossible. Some things are just less likely than others.",
       postImage: "",
     },
     likes: {
@@ -19,15 +19,15 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    username: "Indrajit",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
+    updatedAt: new Date(2021, 8, 10),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "Kiran",
         text: "Interesting",
-        updatedAt: new Date(2021, 7, 3),
+        updatedAt: new Date(2021, 9, 20),
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -35,9 +35,9 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "Rahul",
         text: "Wow!",
-        updatedAt: new Date(2019, 7, 30),
+        updatedAt: new Date(2022, 4, 30),
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -46,10 +46,38 @@ export const posts = [
     ],
   },
   {
-    _id: uuid(),
+    _id: 2,
+    content: {
+      postText: "View 😍",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656239530/ingram/img-1_caz5a4.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Akshay",
+    createdAt: formatDate(),
+    updatedAt: new Date(2020, 5, 24),
+    comments: [
+      {
+        _id: uuid(),
+        username: "Darshana",
+        text: "Wow!",
+        updatedAt: new Date(2020, 5, 25),
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+  },
+  {
+    _id: 3,
     content: {
       postText:
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+        "It is easier to live through someone else than to become complete yourself.",
       postImage: "",
     },
     likes: {
@@ -57,31 +85,325 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
+    username: "Kiran",
 
+    comments: [],
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 3, 20),
+  },
+  {
+    _id: 4,
+    content: {
+      postText: "How's it ?",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656239813/ingram/img-3_ldzlmi.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Darshana",
+    createdAt: formatDate(),
+    updatedAt: new Date(2022, 4, 5),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
-        text: "Interesting",
-        updatedAt: new Date(2022, 3, 3),
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-      {
-        _id: uuid(),
-        username: "sohamshah",
-        text: "Wow!",
-        updatedAt: new Date(2021, 7, 3),
+        username: "Kiran",
+        text: "10/10 !",
+        updatedAt: new Date(2022, 5, 20),
         votes: {
           upvotedBy: [],
           downvotedBy: [],
         },
       },
     ],
+  },
+  {
+    _id: 5,
+    content: {
+      postText: "Much needed break 😍!",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656239818/ingram/img-4_dlg7ll.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Darshana",
     createdAt: formatDate(),
-    updatedAt: new Date(2021, 3, 20),
+    updatedAt: new Date(2022, 4, 10),
+    comments: [],
+  },
+  {
+    _id: 6,
+    content: {
+      postText: "Mornings like these 😄",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656239822/ingram/img-5_jjhn9z.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Kiran",
+    createdAt: formatDate(),
+    updatedAt: new Date(2020, 5, 20),
+    comments: [
+      {
+        _id: uuid(),
+        username: "Akshay",
+        text: "Wowww",
+        updatedAt: new Date(2022, 5, 21),
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+  },
+  {
+    _id: 7,
+    content: {
+      postText: "Cheat Day !",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1655889200/ingram/cld-sample-4.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Arjun",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 5, 20),
+    comments: [
+      {
+        _id: uuid(),
+        username: "Akshay",
+        text: "🤤",
+        updatedAt: new Date(2022, 5, 21),
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+  },
+  {
+    _id: 8,
+    content: {
+      postText: "I don’t need therapy, I just need my Video Game",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656239811/ingram/img-2_gwy5qf.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Arjun",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 5, 15),
+    comments: [
+      {
+        _id: uuid(),
+        username: "Akshay",
+        text: "😲😲",
+        updatedAt: new Date(2021, 5, 17),
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+  },
+  {
+    _id: 9,
+    content: {
+      postText: "Random chance plays a huge part in everybody's life.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Akshay",
+    createdAt: formatDate(),
+    updatedAt: new Date(2020, 5, 15),
+    comments: [],
+  },
+  {
+    _id: 10,
+    content: {
+      postText:
+        "What looks like talent is often careful preparation.What looks like skill is often persistent revision.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Akshay",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 5, 15),
+    comments: [
+      {
+        _id: uuid(),
+        username: "Indrajit",
+        text: "true",
+        updatedAt: new Date(2021, 5, 17),
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+  },
+  {
+    _id: 11,
+    content: {
+      postText: "Revisited 😅",
+      postImage:
+        "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656239530/ingram/img-1_caz5a4.jpg",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Akshay",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 5, 24),
+    comments: [
+      {
+        _id: uuid(),
+        username: "Darshana",
+        text: "Nice 😂",
+        updatedAt: new Date(2021, 5, 25),
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+  },
+  {
+    _id: 12,
+    content: {
+      postText: "Focus on your goals. Not on your obstacles.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Akshay",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 5, 24),
+    comments: [],
+  },
+  {
+    _id: 13,
+    content: {
+      postText: "Food is our common ground, a universal experience",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Akshay",
+    createdAt: formatDate(),
+    updatedAt: new Date(2020, 10, 24),
+    comments: [],
+  },
+  {
+    _id: 14,
+    content: {
+      postText:
+        "Dear friends, your Christmas gift this year… is me. That’s right, another year of friendship. Your membership has been renewed.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Indrajit",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 10, 24),
+    comments: [],
+  },
+  {
+    _id: 15,
+    content: {
+      postText: "Anything is good if it's made of chocolate.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Darshana",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 8, 24),
+    comments: [],
+  },
+  {
+    _id: 16,
+    content: {
+      postText: "Reading without reflecting is like eating without digesting.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Kiran",
+    createdAt: formatDate(),
+    updatedAt: new Date(2020, 8, 24),
+    comments: [],
+  },
+  {
+    _id: 17,
+    content: {
+      postText: "Dare to think unthinkable thoughts",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Kiran",
+    createdAt: formatDate(),
+    updatedAt: new Date(2020, 8, 24),
+    comments: [],
+  },
+  {
+    _id: 18,
+    content: {
+      postText:
+        "There's nothing in the world like the feeling you get when you perform a random act of kindness.",
+      postImage: "",
+    },
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Indrajit",
+    createdAt: formatDate(),
+    updatedAt: new Date(2021, 10, 24),
+    comments: [],
   },
 ];

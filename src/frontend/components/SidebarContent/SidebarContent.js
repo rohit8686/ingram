@@ -5,7 +5,7 @@ export const SidebarContent = () => {
   return (
     <div className="w-1/2 md:inline-block sm:w-1/2 md:w-1/3">
       <NavLink
-        to="/posts"
+        to="/home"
         className={({ isActive }) =>
           isActive ? "flex gap-2 p-2 text-red-400" : "flex gap-2 p-2"
         }
