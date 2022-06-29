@@ -9,7 +9,7 @@ export const Explore = () => {
   const dispatch = useDispatch();
   const [pageNumber, setPageNumber] = useState(1);
   const POSTS_PER_PAGE = 3;
-  const { isPaginateLoading, paginatedPosts, totalPosts } = useSelector(
+  const { isPaginateLoading, paginatedPosts, totalPosts, posts } = useSelector(
     (state) => state.posts
   );
   const hasMorePosts = pageNumber < totalPosts / POSTS_PER_PAGE;
@@ -34,7 +34,7 @@ export const Explore = () => {
 
   useEffect(() => {
     dispatch(getPostsByPageData(pageNumber));
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, posts]);
 
   return (
     <div className="p-2">

@@ -17,6 +17,27 @@ export const CreatePost = () => {
     setPostText((prev) => prev + emojiObject.emoji);
   };
 
+  const createPostHandler = async () => {
+    if (postText && postText.trim() !== "") {
+      const res = await dispatch(
+        createPost({
+          postText,
+          postImage: imageData.imageURL,
+          encodedToken,
+        })
+      );
+      setPostText("");
+      setImageData({ imageURL: "", public_id: "" });
+      if ([200, 201].includes(res.payload.status)) {
+        toastContainer("Post created !", "success");
+      } else {
+        toastContainer("Post creation error !", "error");
+      }
+    } else {
+      toastContainer("Post cannot be empty !", "warning");
+    }
+  };
+
   const fileHandler = (event) => {
     const formData = new FormData();
     formData.append("file", event.target.files[0]);
@@ -120,21 +141,7 @@ export const CreatePost = () => {
           </div>
           <button
             className="bg-blue-500 text-white font-bold px-4 border-b-4 border-blue-700 hover:border-white rounded text-sm block"
-            onClick={() => {
-              if (postText && postText.trim() !== "") {
-                dispatch(
-                  createPost({
-                    postText,
-                    postImage: imageData.imageURL,
-                    encodedToken,
-                  })
-                );
-                setPostText("");
-                setImageData({ imageURL: "", public_id: "" });
-              } else {
-                toastContainer("Post cannot be empty !", "warning");
-              }
-            }}
+            onClick={createPostHandler}
           >
             Post
           </button>
