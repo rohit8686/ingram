@@ -9,13 +9,13 @@ export function timeSince(timeStamp) {
     return Math.round(secondsPast) + "s ago";
   }
   if (secondsPast < 3600) {
-    return Math.round(parseInt(secondsPast / 60)) + "min ago";
+    return Math.round(parseInt(secondsPast / 60)) + "mins ago";
   }
   if (secondsPast <= 86400) {
-    return Math.round(parseInt(secondsPast / 3600)) + "hour ago";
+    return Math.round(parseInt(secondsPast / 3600)) + "hours ago";
   }
   if (secondsPast <= 2628000) {
-    return Math.round(parseInt(secondsPast / 86400)) + "day ago";
+    return Math.round(parseInt(secondsPast / 86400)) + "days ago";
   }
   if (secondsPast <= 31536000) {
     return Math.round(parseInt(secondsPast / 2628000)) + "months ago";

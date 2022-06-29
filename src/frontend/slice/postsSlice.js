@@ -1,11 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPostsData, createPost, addComment } from "../thunks/postsThunks";
+import {
+  getPostsData,
+  createPost,
+  addComment,
+  getPostsByPageData,
+  getPostById,
+} from "../thunks/postsThunks";
 
 const initialState = {
   showSidebar: false,
   posts: [],
+  paginatedPosts: [],
+  singlePostData: {},
   errorMsg: "",
   isLoading: false,
+  isPaginateLoading: false,
+  totalPosts: null,
 };
 
 const postsSlice = createSlice({
@@ -28,12 +38,39 @@ const postsSlice = createSlice({
       state.isLoading = false;
       state.errorMsg = action.payload;
     },
+
+    [getPostsByPageData.pending]: (state) => {
+      state.isPaginateLoading = true;
+    },
+    [getPostsByPageData.fulfilled]: (state, action) => {
+      state.isPaginateLoading = false;
+      state.paginatedPosts = action.payload.posts;
+      state.totalPosts = action.payload.totalPosts;
+    },
+    [getPostsByPageData.rejected]: (state, action) => {
+      state.isPaginateLoading = false;
+      state.errorMsg = action.payload;
+    },
+
+    [getPostById.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getPostById.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.singlePostData = action.payload.post;
+    },
+    [getPostById.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.errorMsg = action.payload;
+    },
+
     [createPost.fulfilled]: (state, action) => {
       state.posts = action.payload.posts;
     },
     [createPost.rejected]: (state, action) => {
       state.errorMsg = action.payload;
     },
+
     [addComment.fulfilled]: (state, action) => {
       const { res, _id } = action.payload;
       const comments = res.data.comments;

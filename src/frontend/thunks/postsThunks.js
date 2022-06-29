@@ -13,6 +13,30 @@ export const getPostsData = createAsyncThunk(
   }
 );
 
+export const getPostsByPageData = createAsyncThunk(
+  "post/postsByPage",
+  async (pageNumber, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/posts/page/${pageNumber}`);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Error in fetching posts");
+    }
+  }
+);
+
+export const getPostById = createAsyncThunk(
+  "post/postById",
+  async (postId, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/posts/${postId}`);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Error in fetching posts");
+    }
+  }
+);
+
 export const createPost = createAsyncThunk(
   "post/createPost",
   async ({ postText, postImage, encodedToken }, { rejectWithValue }) => {
