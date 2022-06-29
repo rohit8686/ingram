@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Post } from "../../components/Post/Post";
 import { getPostsData } from "../../thunks/postsThunks";
-import { getBookmarks } from "../../thunks/usersThunk";
 
 export const Bookmarks = () => {
   const { bookmarks } = useSelector((state) => state.users);
   const { posts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  
+
   const bookmarkPosts = posts.filter((post) =>
     bookmarks.some((bookmark) => bookmark._id === post._id)
   );
