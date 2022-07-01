@@ -2,7 +2,7 @@ import React from "react";
 
 export const Search = () => {
   return (
-    <div className="flex m-4 relative">
+    <div className="flex m-4 sticky top-2">
       <input
         type="text"
         name="search"

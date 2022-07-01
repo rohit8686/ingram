@@ -5,6 +5,8 @@ import {
   addComment,
   getPostsByPageData,
   getPostById,
+  likePost,
+  dislikePost,
 } from "../thunks/postsThunks";
 
 const initialState = {
@@ -65,7 +67,7 @@ const postsSlice = createSlice({
     },
 
     [createPost.fulfilled]: (state, action) => {
-      state.posts = action.payload.posts;
+      state.posts = action.payload.data.posts;
     },
     [createPost.rejected]: (state, action) => {
       state.errorMsg = action.payload;
@@ -79,6 +81,20 @@ const postsSlice = createSlice({
       );
     },
     [addComment.rejected]: (state, action) => {
+      state.errorMsg = action.payload;
+    },
+
+    [likePost.fulfilled]: (state, action) => {
+      state.posts = action.payload.data.posts;
+    },
+    [likePost.rejected]: (state, action) => {
+      state.errorMsg = action.payload;
+    },
+
+    [dislikePost.fulfilled]: (state, action) => {
+      state.posts = action.payload.data.posts;
+    },
+    [dislikePost.rejected]: (state, action) => {
       state.errorMsg = action.payload;
     },
   },

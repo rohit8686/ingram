@@ -1,17 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../thunks/postsThunks";
+import { dislikePost, likePost } from "../../thunks/postsThunks";
 import { Image } from "cloudinary-react";
 import { timeSince } from "../../utils/utils";
 import { toastContainer } from "../../toast/toast";
 import { useNavigate } from "react-router-dom";
+import { bookmarkPost, removeBookmark } from "../../thunks/usersThunk";
+import { LikedByModal } from "../LikedByModal/LikedByModal";
+import { useState } from "react";
 
 export const Post = ({ post }) => {
-  const { _id, content, likes, username, comments, updatedAt } = post;
-  const [commentData, setCommentData] = useState({ _id: "", text: "" });
+  const [showLikes, setShowLikes] = useState(false);
+  const { _id, content, likes, username, comments, createdAt } = post;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { encodedToken } = useSelector((state) => state.auth);
+  const { userData, encodedToken } = useSelector((state) => state.auth);
+  const { bookmarks } = useSelector((state) => state.users);
+
+  const likePostHandler = async () => {
+    const res = await dispatch(likePost({ _id, encodedToken }));
+    if ([200, 201].includes(res.payload.status)) {
+      toastContainer("Liked post ! ", "success");
+    } else {
+      toastContainer("Like post error! ", "error");
+    }
+  };
+
+  const dislikePostHandler = async () => {
+    const res = await dispatch(dislikePost({ _id, encodedToken }));
+    if ([200, 201].includes(res.payload.status)) {
+      toastContainer("Disliked post ! ", "info");
+    } else {
+      toastContainer("Dislike post error! ", "error");
+    }
+  };
+
+  const removeBookmarkHandler = async () => {
+    const res = await dispatch(removeBookmark({ _id, encodedToken }));
+    if ([200, 201].includes(res.payload.status)) {
+      toastContainer("Bookmark removed ! ", "info");
+    } else {
+      toastContainer("Bookmark removing error! ", "error");
+    }
+  };
+
+  const bookmarkPostHandler = async () => {
+    const res = await dispatch(bookmarkPost({ _id, encodedToken }));
+    if ([200, 201].includes(res.payload.status)) {
+      toastContainer("Bookmarked post ! ", "success");
+    } else {
+      toastContainer("Bookmark post error! ", "error");
+    }
+  };
 
   return (
     <div className="flex gap-2 sm:gap-4 p-4 border-2 rounded-lg my-4">
@@ -27,7 +67,7 @@ export const Post = ({ post }) => {
             className="text-sm cursor-pointer"
             onClick={() => navigate(`/posts/${_id}`)}
           >
-            {timeSince(updatedAt)}
+            {timeSince(createdAt)}
           </p>
         </div>
         <p
@@ -46,8 +86,27 @@ export const Post = ({ post }) => {
         )}
         <div className="flex justify-between pt-4">
           <div className="flex gap-2 cursor-pointer">
-            <span className="material-icons-outlined">favorite_border</span>
-            <p>{likes.likeCount}</p>
+            <span
+              className={`material-icons-outlined text-red-400 ${
+                likes.likedBy.some((like) => like._id === userData._id)
+                  ? "hidden"
+                  : ""
+              }`}
+              onClick={likePostHandler}
+            >
+              favorite_border
+            </span>
+            <span
+              className={`material-icons text-red-400 ${
+                likes.likedBy.some((like) => like._id === userData._id)
+                  ? ""
+                  : "hidden"
+              }`}
+              onClick={dislikePostHandler}
+            >
+              favorite
+            </span>
+            <p onClick={() => setShowLikes(!showLikes)}>{likes.likeCount}</p>
           </div>
 
           <div className="flex gap-2 cursor-pointer">
@@ -59,40 +118,40 @@ export const Post = ({ post }) => {
             </span>
             <p>{comments.length}</p>
           </div>
-          <span className="material-icons-outlined cursor-pointer">
+          <span
+            className={`material-icons-outlined cursor-pointer text-red-400 ${
+              bookmarks.some((bookmark) => bookmark._id === _id) ? "hidden" : ""
+            }`}
+            onClick={bookmarkPostHandler}
+          >
             bookmark_border
+          </span>
+          <span
+            className={`material-icons cursor-pointer text-red-400 ${
+              bookmarks.some((bookmark) => bookmark._id === _id) ? "" : "hidden"
+            }`}
+            onClick={removeBookmarkHandler}
+          >
+            bookmark
           </span>
           <span className="material-icons-outlined cursor-pointer">share</span>
         </div>
-        <div className="relative">
+        <div className="relative" onClick={() => navigate(`/posts/${_id}`)}>
           <input
             type="text"
-            name=""
-            id=""
+            name="comment"
+            id="comment"
             className="mt-4 px-2 py-1 text-black w-full rounded-md"
             placeholder="Add a comment"
-            onFocus={() => navigate(`/posts/${_id}`)}
           />
-          <button
-            onClick={(e) => {
-              if (
-                commentData._id === _id &&
-                commentData.text &&
-                commentData.text.trim() !== ""
-              ) {
-                dispatch(addComment({ ...commentData, encodedToken }));
-                setCommentData({ _id: "", text: "" });
-              } else {
-                toastContainer("Comment cannot be empty", "warning");
-              }
-            }}
-          >
+          <button>
             <span className="material-icons-outlined absolute bottom-1 right-0 text-black px-2 pt-0 cursor-pointer">
               shortcut
             </span>
           </button>
         </div>
       </div>
+      {showLikes && <LikedByModal likes={likes} setShowLikes={setShowLikes} />}
     </div>
   );
 };
