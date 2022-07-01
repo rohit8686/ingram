@@ -34,7 +34,7 @@ export const Profile = () => {
   useEffect(() => {
     dispatch(getPostsByUser(profileId ? profileId : userData._id));
     dispatch(getUser({ userId }));
-  }, [dispatch, posts, profileId, userData._id]);
+  }, [dispatch, posts, profileId, userData._id, userId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -69,9 +69,7 @@ export const Profile = () => {
       />
       <h1 className="text-2xl font-bold pt-4 text-red-400">{username}</h1>
       <p>{bio}</p>
-      <a href="#" className="text-red-400 underline">
-        {website}
-      </a>
+      <button className="text-red-400 underline">{website}</button>
       {!profileId && (
         <button
           type="button"
