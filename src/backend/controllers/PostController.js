@@ -64,9 +64,9 @@ export const getPostsByPageHandler = function (schema, request) {
  * */
 
 export const getAllUserPostsHandler = function (schema, request) {
-  const { username } = request.params;
+  const { userId } = request.params;
   try {
-    const posts = schema.posts.where({ username })?.models;
+    const posts = schema.posts.where({ userId })?.models;
     return new Response(200, {}, { posts });
   } catch (error) {
     return new Response(
@@ -109,6 +109,7 @@ export const createPostHandler = function (schema, request) {
         dislikedBy: [],
       },
       username: user.username,
+      image: user.image,
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };

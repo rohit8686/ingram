@@ -46,3 +46,81 @@ export const getBookmarks = createAsyncThunk(
     }
   }
 );
+
+export const getUsers = createAsyncThunk(
+  "users/getUsers",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/users`);
+      return res;
+    } catch (e) {
+      rejectWithValue("Error in getting users");
+    }
+  }
+);
+
+export const getUser = createAsyncThunk(
+  "users/getUser",
+  async ({ userId }, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/users/${userId}`);
+      return res;
+    } catch (e) {
+      rejectWithValue("Error in getting user");
+    }
+  }
+);
+
+export const followUser = createAsyncThunk(
+  "users/followUser",
+  async ({ profileId, encodedToken }, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(
+        `/api/users/follow/${profileId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      return res;
+    } catch (e) {
+      rejectWithValue("Error in getting user");
+    }
+  }
+);
+
+export const unfollowUser = createAsyncThunk(
+  "users/unfollowUser",
+  async ({ profileId, encodedToken }, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(
+        `/api/users/unfollow/${profileId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      return res;
+    } catch (e) {
+      rejectWithValue("Error in getting user");
+    }
+  }
+);
+
+export const editUser = createAsyncThunk(
+  "users/editUser",
+  async ({ modifiedUserData, encodedToken }, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(
+        `/api/users/edit`,
+        { userData: modifiedUserData },
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      return res;
+    } catch (e) {
+      rejectWithValue("Error in updating user data");
+    }
+  }
+);

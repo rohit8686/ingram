@@ -15,7 +15,7 @@ export const PrivateRoute = () => {
       {encodedToken ? (
         <div className="sm:flex">
           <Sidebar />
-          <div className=" mx-auto sm:w-1/2">
+          <div className="mx-auto sm:w-1/2">
             <Outlet />
           </div>
           <div className="w-full sm:w-1/4">

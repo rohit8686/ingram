@@ -9,8 +9,10 @@ export const CreatePost = () => {
   const [postText, setPostText] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
   const [imageData, setImageData] = useState({ imageURL: "", public_id: "" });
-
-  const { encodedToken } = useSelector((state) => state.auth);
+  const {
+    userData: { _id, image },
+    encodedToken,
+  } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const onEmojiClick = (event, emojiObject) => {
@@ -24,6 +26,7 @@ export const CreatePost = () => {
           postText,
           postImage: imageData.imageURL,
           encodedToken,
+          _id,
         })
       );
       setPostText("");
@@ -73,7 +76,7 @@ export const CreatePost = () => {
     <div className="flex gap-2 sm:gap-4 m-4">
       <Image
         cloudName="dxj7py6nj"
-        publicId="https://res.cloudinary.com/dxj7py6nj/image/upload/v1655890516/ingram/profile_t8on9b.png"
+        publicId={image}
         className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover"
       />
       <div className="flex flex-grow flex-col">

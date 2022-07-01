@@ -9,6 +9,7 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
   {
     _id: 1,
+    userId: 2,
     content: {
       postText:
         "Nothing is impossible. Some things are just less likely than others.",
@@ -25,6 +26,10 @@ export const posts = [
           password: "rohitrohit",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "Welcome to my world",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604362/ingram/profile-pic_2_pfmon9.png",
+          website: "www.rohit.com",
         },
         {
           _id: 2,
@@ -34,6 +39,10 @@ export const posts = [
           password: "Indrajit123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "It won’t always be easy, but always try to do what’s right",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+          website: "www.indrajit.in",
         },
         {
           _id: 3,
@@ -43,6 +52,10 @@ export const posts = [
           password: "Darshana123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "Currently saying yes to new adventures",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+          website: "www.darshana.co",
         },
         {
           _id: 4,
@@ -52,6 +65,10 @@ export const posts = [
           password: "Kiran123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "It took me 25 years to look like this",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+          website: "www.kiran.in",
         },
         {
           _id: 6,
@@ -61,6 +78,10 @@ export const posts = [
           password: "Akshay123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "I’m out here hustlin’ to claim what’s mine",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+          website: "www.akshay.com",
         },
         {
           _id: 7,
@@ -70,6 +91,10 @@ export const posts = [
           password: "Arjun123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "Wanna know my story? Press that follow button.",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604405/ingram/img-7_d4ohp2.jpg",
+          website: "www.arjun.co",
         },
       ],
       dislikedBy: [],
@@ -80,6 +105,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 4,
         username: "Kiran",
         text: "Interesting",
         createdAt: new Date(2021, 9, 20),
@@ -88,9 +114,14 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "It took me 25 years to look like this",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+        website: "www.kiran.in",
       },
       {
         _id: uuid(),
+        userId: 5,
         username: "Rahul",
         text: "Wow!",
         createdAt: new Date(2022, 4, 30),
@@ -99,11 +130,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "I might not be where I want to be yet, but I get closer everyday",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604691/ingram/img-10_egt8m8.jpg",
+        website: "www.rahul_g.in",
       },
     ],
+    bio: "It won’t always be easy, but always try to do what’s right",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+    website: "www.indrajit.in",
   },
   {
     _id: 2,
+    userId: 6,
     content: {
       postText: "View 😍",
       postImage:
@@ -120,6 +160,10 @@ export const posts = [
           password: "Indrajit123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "It won’t always be easy, but always try to do what’s right",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+          website: "www.indrajit.in",
         },
         {
           _id: 3,
@@ -129,6 +173,10 @@ export const posts = [
           password: "Darshana123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "Currently saying yes to new adventures",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+          website: "www.darshana.co",
         },
         {
           _id: 4,
@@ -138,6 +186,10 @@ export const posts = [
           password: "Kiran123",
           createdAt: formatDate(),
           updatedAt: formatDate(),
+          bio: "It took me 25 years to look like this",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+          website: "www.kiran.in",
         },
       ],
       dislikedBy: [],
@@ -148,6 +200,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 3,
         username: "Darshana",
         text: "Wow!",
         createdAt: new Date(2020, 5, 25),
@@ -156,11 +209,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "Currently saying yes to new adventures",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+        website: "www.darshana.co",
       },
     ],
+    bio: "I’m out here hustlin’ to claim what’s mine",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+    website: "www.akshay.com",
   },
   {
     _id: 3,
+    userId: 4,
     content: {
       postText:
         "It is easier to live through someone else than to become complete yourself.",
@@ -172,13 +234,17 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Kiran",
-
     comments: [],
     createdAt: new Date(2021, 3, 20),
     updatedAt: new Date(2021, 3, 20),
+    bio: "It took me 25 years to look like this",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+    website: "www.kiran.in",
   },
   {
     _id: 4,
+    userId: 3,
     content: {
       postText: "How's it ?",
       postImage:
@@ -195,6 +261,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 4,
         username: "Kiran",
         text: "10/10 !",
         createdAt: new Date(2022, 5, 20),
@@ -203,11 +270,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "It took me 25 years to look like this",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+        website: "www.kiran.in",
       },
     ],
+    bio: "Currently saying yes to new adventures",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+    website: "www.darshana.co",
   },
   {
     _id: 5,
+    userId: 3,
     content: {
       postText: "Much needed break 😍!",
       postImage:
@@ -222,6 +298,10 @@ export const posts = [
     createdAt: new Date(2022, 4, 10),
     updatedAt: new Date(2022, 4, 10),
     comments: [],
+    bio: "Currently saying yes to new adventures",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+    website: "www.darshana.co",
   },
   {
     _id: 6,
@@ -241,6 +321,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 6,
         username: "Akshay",
         text: "Wowww",
         createdAt: new Date(2022, 5, 21),
@@ -249,11 +330,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "I’m out here hustlin’ to claim what’s mine",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+        website: "www.akshay.com",
       },
     ],
+    bio: "It took me 25 years to look like this",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+    website: "www.kiran.in",
   },
   {
     _id: 7,
+    userId: 7,
     content: {
       postText: "Cheat Day !",
       postImage:
@@ -270,6 +360,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 6,
         username: "Akshay",
         text: "🤤",
         createdAt: new Date(2022, 5, 21),
@@ -278,11 +369,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "I’m out here hustlin’ to claim what’s mine",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+        website: "www.akshay.com",
       },
     ],
+    bio: "Wanna know my story? Press that follow button.",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604405/ingram/img-7_d4ohp2.jpg",
+    website: "www.arjun.co",
   },
   {
     _id: 8,
+    userId: 7,
     content: {
       postText: "I don’t need therapy, I just need my Video Game",
       postImage:
@@ -299,6 +399,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 6,
         username: "Akshay",
         text: "😲😲",
         createdAt: new Date(2021, 5, 17),
@@ -307,11 +408,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "I’m out here hustlin’ to claim what’s mine",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+        website: "www.akshay.com",
       },
     ],
+    bio: "Wanna know my story? Press that follow button.",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604405/ingram/img-7_d4ohp2.jpg",
+    website: "www.arjun.co",
   },
   {
     _id: 9,
+    userId: 6,
     content: {
       postText: "Random chance plays a huge part in everybody's life.",
       postImage: "",
@@ -325,6 +435,10 @@ export const posts = [
     createdAt: new Date(2020, 5, 15),
     updatedAt: new Date(2020, 5, 15),
     comments: [],
+    bio: "I’m out here hustlin’ to claim what’s mine",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+    website: "www.akshay.com",
   },
   {
     _id: 10,
@@ -344,6 +458,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 2,
         username: "Indrajit",
         text: "true",
         createdAt: new Date(2021, 5, 17),
@@ -352,11 +467,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "It won’t always be easy, but always try to do what’s right",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+        website: "www.indrajit.in",
       },
     ],
+    bio: "I’m out here hustlin’ to claim what’s mine",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+    website: "www.akshay.com",
   },
   {
     _id: 11,
+    userId: 6,
     content: {
       postText: "Revisited 😅",
       postImage:
@@ -373,6 +497,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        userId: 3,
         username: "Darshana",
         text: "Nice 😂",
         createdAt: new Date(2021, 5, 25),
@@ -381,11 +506,20 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
+        bio: "Currently saying yes to new adventures",
+        image:
+          "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+        website: "www.darshana.co",
       },
     ],
+    bio: "I’m out here hustlin’ to claim what’s mine",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+    website: "www.akshay.com",
   },
   {
     _id: 12,
+    userId: 6,
     content: {
       postText: "Focus on your goals. Not on your obstacles.",
       postImage: "",
@@ -399,9 +533,14 @@ export const posts = [
     createdAt: new Date(2021, 5, 24),
     updatedAt: new Date(2021, 5, 24),
     comments: [],
+    bio: "I’m out here hustlin’ to claim what’s mine",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+    website: "www.akshay.com",
   },
   {
     _id: 13,
+    userId: 6,
     content: {
       postText: "Food is our common ground, a universal experience",
       postImage: "",
@@ -415,9 +554,14 @@ export const posts = [
     createdAt: new Date(2020, 10, 24),
     updatedAt: new Date(2020, 10, 24),
     comments: [],
+    bio: "I’m out here hustlin’ to claim what’s mine",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604688/ingram/img-9_py7ynp.jpg",
+    website: "www.akshay.com",
   },
   {
     _id: 14,
+    userId: 2,
     content: {
       postText:
         "Dear friends, your Christmas gift this year… is me. That’s right, another year of friendship. Your membership has been renewed.",
@@ -432,9 +576,14 @@ export const posts = [
     createdAt: new Date(2021, 10, 24),
     updatedAt: new Date(2021, 10, 24),
     comments: [],
+    bio: "It won’t always be easy, but always try to do what’s right",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+    website: "www.indrajit.in",
   },
   {
     _id: 15,
+    userId: 3,
     content: {
       postText: "Anything is good if it's made of chocolate.",
       postImage: "",
@@ -448,9 +597,14 @@ export const posts = [
     createdAt: new Date(2021, 8, 24),
     updatedAt: new Date(2021, 8, 24),
     comments: [],
+    bio: "Currently saying yes to new adventures",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+    website: "www.darshana.co",
   },
   {
     _id: 16,
+    userId: 4,
     content: {
       postText: "Reading without reflecting is like eating without digesting.",
       postImage: "",
@@ -464,9 +618,14 @@ export const posts = [
     createdAt: new Date(2020, 8, 24),
     updatedAt: new Date(2020, 8, 24),
     comments: [],
+    bio: "It took me 25 years to look like this",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+    website: "www.kiran.in",
   },
   {
     _id: 17,
+    userId: 4,
     content: {
       postText: "Dare to think unthinkable thoughts",
       postImage: "",
@@ -480,9 +639,14 @@ export const posts = [
     createdAt: new Date(2020, 8, 24),
     updatedAt: new Date(2020, 8, 24),
     comments: [],
+    bio: "It took me 25 years to look like this",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+    website: "www.kiran.in",
   },
   {
     _id: 18,
+    userId: 2,
     content: {
       postText:
         "There's nothing in the world like the feeling you get when you perform a random act of kindness.",
@@ -497,5 +661,9 @@ export const posts = [
     createdAt: new Date(2021, 10, 24),
     updatedAt: new Date(2021, 10, 24),
     comments: [],
+    bio: "It won’t always be easy, but always try to do what’s right",
+    image:
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+    website: "www.indrajit.in",
   },
 ];

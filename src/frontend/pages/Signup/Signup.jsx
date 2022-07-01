@@ -34,7 +34,7 @@ export const Signup = () => {
                 () => toastContainer("Signup Successfull", "success"),
                 200
               );
-              navigate("/posts");
+              navigate("/home");
             }
           }}
         >

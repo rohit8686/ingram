@@ -4,7 +4,7 @@ import { login, signup } from "../thunks/authThunks";
 const initialState = {
   isLoading: false,
   errorMsg: "",
-  userData: "",
+  userData: [],
   encodedToken: "",
 };
 
@@ -19,6 +19,9 @@ const authSlice = createSlice({
       state.errorMsg = "";
       state.userData = "";
       state.encodedToken = "";
+    },
+    setUserData: (state, action) => {
+      state.userData = action.payload;
     },
   },
   extraReducers: {
@@ -49,5 +52,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearErrorMsg, logout } = authSlice.actions;
+export const { clearErrorMsg, logout, setUserData } = authSlice.actions;
 export default authSlice.reducer;
