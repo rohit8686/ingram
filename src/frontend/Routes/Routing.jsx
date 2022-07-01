@@ -23,6 +23,7 @@ export const Routing = () => {
         <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:profileId" element={<Profile />} />
         <Route path="/posts/:postId" element={<SinglePost />} />
       </Route>
     </Routes>

@@ -12,17 +12,20 @@ import { toastContainer } from "../../toast/toast";
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Comments } from "../Comments/Comments";
-import { bookmarkPost, removeBookmark } from "../../thunks/usersThunk";
+import { bookmarkPost, getUser, removeBookmark } from "../../thunks/usersThunk";
+import { LikedByModal } from "../LikedByModal/LikedByModal";
 
 export const SinglePost = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const { singlePostData, posts } = useSelector((state) => state.posts);
-  const { _id, content, likes, username, comments, createdAt } = singlePostData;
+  const { _id, content, likes, username, comments, createdAt, image, userId } =
+    singlePostData;
   const [commentData, setCommentData] = useState({ _id: "", text: "" });
   const dispatch = useDispatch();
   const { userData, encodedToken } = useSelector((state) => state.auth);
   const { bookmarks } = useSelector((state) => state.users);
+  const [showLikes, setShowLikes] = useState(false);
 
   useEffect(() => {
     dispatch(getPostById(postId));
@@ -94,24 +97,47 @@ export const SinglePost = () => {
       <>
         <div className="flex gap-2 sm:gap-4 p-4 border-2 rounded-lg my-4">
           <Image
-            cloudName="dxj7py6nj"
-            publicId="https://res.cloudinary.com/dxj7py6nj/image/upload/v1655890516/ingram/profile_t8on9b.png"
+            cloudName={process.env.REACT_APP_CLOUD_NAME}
+            publicId={image}
             className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover"
           />
           <div className="flex flex-grow flex-col">
             <div className="flex justify-between items-center">
-              <h1 className="text-lg text-red-400">{username}</h1>
+              <h1
+                className="text-lg text-red-400"
+                onClick={async () => {
+                  const res = await dispatch(getUser({ userId }));
+                  if ([200, 201].includes(res.payload.status)) {
+                    navigate(`/profile/${userId}`);
+                  } else {
+                    toastContainer("Error in getting profile data !", "error");
+                  }
+                }}
+              >
+                {username}
+              </h1>
               <p className="text-sm">{timeSince(createdAt)}</p>
             </div>
             <p className="text-left">{content?.postText}</p>
             {content?.postImage && (
               <Image
-                cloudName="dxj7py6nj"
+                cloudName={process.env.REACT_APP_CLOUD_NAME}
                 publicId={content?.postImage}
                 className="object-contain pt-2"
               />
             )}
-            <div className="flex justify-between pt-4">
+            {likes?.likedBy?.length > 1 && (
+              <p className="pt-4 text-sm text-red-400/75">
+                Liked by {likes?.likedBy[0]?.username} and{" "}
+                {likes?.likedBy?.length - 1} others
+              </p>
+            )}
+            {likes?.likedBy?.length === 1 && (
+              <p className="pt-4 text-sm text-red-400/75">
+                Liked by {likes?.likedBy[0]?.username}
+              </p>
+            )}
+            <div className="flex justify-between pt-2">
               <div className="flex gap-2 cursor-pointer">
                 <span
                   className={`material-icons-outlined text-red-400 ${
@@ -133,7 +159,9 @@ export const SinglePost = () => {
                 >
                   favorite
                 </span>
-                <p>{likes?.likeCount}</p>
+                <p onClick={() => setShowLikes(!showLikes)}>
+                  {likes?.likeCount}
+                </p>
               </div>
 
               <div className="flex gap-2 cursor-pointer">
@@ -182,6 +210,9 @@ export const SinglePost = () => {
             </div>
             <Comments comments={comments} />
           </div>
+          {showLikes && (
+            <LikedByModal likes={likes} setShowLikes={setShowLikes} />
+          )}
         </div>
       </>
     </>

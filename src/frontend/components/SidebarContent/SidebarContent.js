@@ -32,15 +32,6 @@ export const SidebarContent = () => {
         <h1 className="text-lg font-bold">Bookmarks</h1>
       </NavLink>
       <NavLink
-        to="/notifications"
-        className={({ isActive }) =>
-          isActive ? "flex gap-2 p-2 text-red-400" : "flex gap-2 p-2"
-        }
-      >
-        <span className="material-icons-outlined">notifications_active</span>
-        <h1 className="text-lg font-bold">Notifications</h1>
-      </NavLink>
-      <NavLink
         to="/profile"
         className={({ isActive }) =>
           isActive ? "flex gap-2 p-2 text-red-400" : "flex gap-2 p-2"

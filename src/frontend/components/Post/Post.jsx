@@ -5,13 +5,14 @@ import { Image } from "cloudinary-react";
 import { timeSince } from "../../utils/utils";
 import { toastContainer } from "../../toast/toast";
 import { useNavigate } from "react-router-dom";
-import { bookmarkPost, removeBookmark } from "../../thunks/usersThunk";
+import { bookmarkPost, getUser, removeBookmark } from "../../thunks/usersThunk";
 import { LikedByModal } from "../LikedByModal/LikedByModal";
 import { useState } from "react";
 
 export const Post = ({ post }) => {
   const [showLikes, setShowLikes] = useState(false);
-  const { _id, content, likes, username, comments, createdAt } = post;
+  const { _id, content, likes, username, comments, createdAt, userId, image } =
+    post;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userData, encodedToken } = useSelector((state) => state.auth);
@@ -56,13 +57,25 @@ export const Post = ({ post }) => {
   return (
     <div className="flex gap-2 sm:gap-4 p-4 border-2 rounded-lg my-4">
       <Image
-        cloudName="dxj7py6nj"
-        publicId="https://res.cloudinary.com/dxj7py6nj/image/upload/v1655890516/ingram/profile_t8on9b.png"
+        cloudName={process.env.REACT_APP_CLOUD_NAME}
+        publicId={image}
         className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover"
       />
       <div className="flex flex-grow flex-col">
         <div className="flex justify-between items-center">
-          <h1 className="text-lg text-red-400">{username}</h1>
+          <h1
+            className="text-lg text-red-400 font-semibold cursor-pointer"
+            onClick={async () => {
+              const res = await dispatch(getUser({ userId }));
+              if ([200, 201].includes(res.payload.status)) {
+                navigate(`/profile/${userId}`);
+              } else {
+                toastContainer("Error in getting profile data !", "error");
+              }
+            }}
+          >
+            {username}
+          </h1>
           <p
             className="text-sm cursor-pointer"
             onClick={() => navigate(`/posts/${_id}`)}
@@ -76,15 +89,27 @@ export const Post = ({ post }) => {
         >
           {content.postText}
         </p>
+
         {content.postImage && (
           <Image
-            cloudName="dxj7py6nj"
+            cloudName={process.env.REACT_APP_CLOUD_NAME}
             publicId={content.postImage}
             className="object-contain pt-2 cursor-pointer"
             onClick={() => navigate(`/posts/${_id}`)}
           />
         )}
-        <div className="flex justify-between pt-4">
+        {likes.likedBy.length > 1 && (
+          <p className="pt-4 text-sm text-red-400/75">
+            Liked by {likes?.likedBy[0]?.username} and{" "}
+            {likes?.likedBy?.length - 1} others
+          </p>
+        )}
+        {likes.likedBy.length === 1 && (
+          <p className="pt-4 text-sm text-red-400/75">
+            Liked by {likes?.likedBy[0]?.username}
+          </p>
+        )}
+        <div className="flex justify-between pt-2">
           <div className="flex gap-2 cursor-pointer">
             <span
               className={`material-icons-outlined text-red-400 ${

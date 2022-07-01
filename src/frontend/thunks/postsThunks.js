@@ -37,10 +37,26 @@ export const getPostById = createAsyncThunk(
   }
 );
 
+export const getPostsByUser = createAsyncThunk(
+  "post/postsByUser",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/posts/user/${userId}`);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Error in fetching posts by id");
+    }
+  }
+);
+
 export const createPost = createAsyncThunk(
   "post/createPost",
-  async ({ postText, postImage, encodedToken }, { rejectWithValue }) => {
-    const postData = { content: { postText, postImage }, comments: [] };
+  async ({ postText, postImage, encodedToken, _id }, { rejectWithValue }) => {
+    const postData = {
+      content: { postText, postImage },
+      userId: _id,
+      comments: [],
+    };
     try {
       const res = await axios.post(
         "/api/posts",
