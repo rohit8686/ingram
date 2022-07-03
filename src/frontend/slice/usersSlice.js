@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   bookmarkPost,
-  followUser,
   getBookmarks,
   getUser,
   getUsers,
+  getUsersBySearch,
   removeBookmark,
   unfollowUser,
 } from "../thunks/usersThunk";
@@ -13,13 +13,18 @@ const initialState = {
   bookmarks: [],
   userProfile: [],
   usersData: [],
+  usersDataBySearch: [],
   errorMsg: "",
 };
 
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    clearUsersDataBySearch: (state) => {
+      state.usersDataBySearch = [];
+    },
+  },
   extraReducers: {
     [getBookmarks.fulfilled]: (state, action) => {
       state.bookmarks = action.payload.data.bookmarks;
@@ -56,15 +61,14 @@ const usersSlice = createSlice({
       state.errorMsg = action.payload;
     },
 
-    [followUser.fulfilled]: (state, action) => {
-      state.userProfile = action.payload.data.followUser;
+    [getUsersBySearch.fulfilled]: (state, action) => {
+      state.usersDataBySearch = action.payload.data.users;
     },
-    [followUser.rejected]: (state, action) => {
+    [getUsersBySearch.rejected]: (state, action) => {
       state.errorMsg = action.payload;
     },
 
     [unfollowUser.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.userProfile = action.payload.data.followUser;
     },
     [unfollowUser.rejected]: (state, action) => {
@@ -73,4 +77,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const { clearUsersDataBySearch } = usersSlice.actions;
 export default usersSlice.reducer;

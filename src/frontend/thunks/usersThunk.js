@@ -71,6 +71,18 @@ export const getUser = createAsyncThunk(
   }
 );
 
+export const getUsersBySearch = createAsyncThunk(
+  "users/getUsersBySearch",
+  async ({ searchText }, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/users/search/${searchText}`);
+      return res;
+    } catch (e) {
+      rejectWithValue("Error in getting user");
+    }
+  }
+);
+
 export const followUser = createAsyncThunk(
   "users/followUser",
   async ({ profileId, encodedToken }, { rejectWithValue }) => {

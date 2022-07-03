@@ -73,7 +73,7 @@ export const CreatePost = () => {
   };
 
   return (
-    <div className="flex gap-2 sm:gap-4 m-4">
+    <div className="flex gap-1 sm:gap-2 m-4">
       <Image
         cloudName="dxj7py6nj"
         publicId={image}
@@ -83,7 +83,6 @@ export const CreatePost = () => {
         <textarea
           name="post-text"
           id="post-text"
-          cols="30"
           rows="4"
           placeholder="What's happening ?"
           value={postText}
@@ -143,7 +142,7 @@ export const CreatePost = () => {
             )}
           </div>
           <button
-            className="bg-blue-500 text-white font-bold px-4 border-b-4 border-blue-700 hover:border-white rounded text-sm block"
+            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-4 py-1.5 text-center"
             onClick={createPostHandler}
           >
             Post

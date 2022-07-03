@@ -45,7 +45,7 @@ export const EditProfileModal = ({ setShowEditProfile, userData }) => {
         <Image
           cloudName={process.env.REACT_APP_CLOUD_NAME}
           publicId={image}
-          className="object-contain pt-2 w-14 h-14 cursor-pointer"
+          className="object-contain pt-2 w-14 h-14 cursor-pointer rounded-full"
         />
         <div className="mt-2">
           <label htmlFor="username">
@@ -56,7 +56,7 @@ export const EditProfileModal = ({ setShowEditProfile, userData }) => {
               id="username"
               value={username}
               disabled
-              className="cursor-not-allowed p-1 w-full"
+              className="cursor-not-allowed p-1 w-full rounded-md"
             />
           </label>
         </div>
@@ -68,7 +68,7 @@ export const EditProfileModal = ({ setShowEditProfile, userData }) => {
               id="bio"
               cols="20"
               rows="5"
-              className="w-full text-black p-1"
+              className="w-full text-black p-1 rounded-md"
               placeholder="Something about yourself"
               value={modifiedUserData.bio}
               onChange={userDataInputHandler}
@@ -83,7 +83,7 @@ export const EditProfileModal = ({ setShowEditProfile, userData }) => {
             id="website"
             value={modifiedUserData.website}
             onChange={userDataInputHandler}
-            className="text-black p-1 w-full"
+            className="text-black p-1 w-full rounded-md"
           />
         </label>
         <div className="flex justify-end">

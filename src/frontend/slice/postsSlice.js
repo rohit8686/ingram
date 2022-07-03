@@ -8,12 +8,14 @@ import {
   likePost,
   dislikePost,
   getPostsByUser,
+  getPostsByUserForProfile,
 } from "../thunks/postsThunks";
 
 const initialState = {
   showSidebar: false,
   posts: [],
   userPosts: [],
+  userPostsForProfile: [],
   paginatedPosts: [],
   singlePostData: {},
   errorMsg: "",
@@ -75,6 +77,16 @@ const postsSlice = createSlice({
       state.userPosts = action.payload.posts;
     },
     [getPostsByUser.rejected]: (state, action) => {
+      state.errorMsg = action.payload;
+    },
+
+    [getPostsByUserForProfile.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getPostsByUserForProfile.fulfilled]: (state, action) => {
+      state.userPostsForProfile = action.payload.posts;
+    },
+    [getPostsByUserForProfile.rejected]: (state, action) => {
       state.errorMsg = action.payload;
     },
 

@@ -100,6 +100,7 @@ export const SinglePost = () => {
             cloudName={process.env.REACT_APP_CLOUD_NAME}
             publicId={image}
             className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover"
+            onClick={() => navigate(`/profile/${userId}`)}
           />
           <div className="flex flex-grow flex-col">
             <div className="flex justify-between items-center">

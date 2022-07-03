@@ -12,7 +12,7 @@ export const Sidebar = () => {
           <SidebarContent />
         </div>
       )}
-      <div className="hidden p-2 md:block md:w-1/5">
+      <div className="hidden p-2 md:block lg:w-1/6">
         <SidebarContent />
       </div>
     </>
