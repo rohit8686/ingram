@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { followUser, getUser, unfollowUser } from "../../thunks/usersThunk";
-import { getPostsByUser } from "../../thunks/postsThunks";
+import { getPostsByUserForProfile } from "../../thunks/postsThunks";
 import { Post } from "../../components/Post/Post";
 import { FollowersModal } from "../../components/FollowersModal/FollowersModal";
 import { FollowingModal } from "../../components/FollowingModal/FollowingModal";
@@ -18,7 +18,7 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const { userData, encodedToken } = useSelector((state) => state.auth);
   const { userProfile } = useSelector((state) => state.users);
-  const { userPosts, posts } = useSelector((state) => state.posts);
+  const { userPostsForProfile, posts } = useSelector((state) => state.posts);
   const { username, followers, following, bio, image, website } = profileId
     ? userProfile
     : userData;
@@ -30,9 +30,12 @@ export const Profile = () => {
   if (!userData) {
     navigate("/login");
   }
+  if (Number(profileId) === userData._id) {
+    navigate("/profile");
+  }
 
   useEffect(() => {
-    dispatch(getPostsByUser(profileId ? profileId : userData._id));
+    dispatch(getPostsByUserForProfile(profileId ? profileId : userData._id));
     dispatch(getUser({ userId }));
   }, [dispatch, posts, profileId, userData._id, userId]);
 
@@ -121,7 +124,7 @@ export const Profile = () => {
         </button>
         <button className="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
           <div className="flex flex-col">
-            <p>{userPosts?.length}</p>
+            <p>{userPostsForProfile?.length}</p>
             <p>Posts</p>
           </div>
         </button>
@@ -135,10 +138,10 @@ export const Profile = () => {
           </div>
         </button>
       </div>
-      {userPosts.length === 0 && (
+      {userPostsForProfile.length === 0 && (
         <h1 className="mt-4 text-lg">No Posts have been created !</h1>
       )}
-      {userPosts.map((post) => {
+      {userPostsForProfile.map((post) => {
         return (
           <div key={post._id} className="w-full">
             <Post post={post} />

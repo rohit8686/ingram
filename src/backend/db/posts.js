@@ -9,7 +9,7 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
   {
     _id: 1,
-    userId: 2,
+    userId: 1,
     content: {
       postText:
         "Nothing is impossible. Some things are just less likely than others.",
@@ -99,8 +99,8 @@ export const posts = [
       ],
       dislikedBy: [],
     },
-    username: "Indrajit",
-    createdAt: new Date(2021, 8, 10),
+    username: "Rohit",
+    createdAt: new Date(2021, 10, 10),
     updatedAt: new Date(2021, 8, 10),
     comments: [
       {
@@ -130,7 +130,7 @@ export const posts = [
           upvotedBy: [],
           downvotedBy: [],
         },
-        bio: "I might not be where I want to be yet, but I get closer everyday",
+        bio: "Welcome to my world",
         image:
           "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604691/ingram/img-10_egt8m8.jpg",
         website: "www.rahul_g.in",
@@ -138,8 +138,8 @@ export const posts = [
     ],
     bio: "It won’t always be easy, but always try to do what’s right",
     image:
-      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
-    website: "www.indrajit.in",
+      "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604362/ingram/profile-pic_2_pfmon9.png",
+    website: "www.rohit.com",
   },
   {
     _id: 2,
@@ -589,8 +589,48 @@ export const posts = [
       postImage: "",
     },
     likes: {
-      likeCount: 0,
-      likedBy: [],
+      likeCount: 3,
+      likedBy: [
+        {
+          _id: 2,
+          firstName: "K",
+          lastName: "Indrajit",
+          username: "Indrajit",
+          password: "Indrajit123",
+          createdAt: formatDate(),
+          updatedAt: formatDate(),
+          bio: "It won’t always be easy, but always try to do what’s right",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604693/ingram/img-11_ay6wgm.jpg",
+          website: "www.indrajit.in",
+        },
+        {
+          _id: 3,
+          firstName: "P",
+          lastName: "Darshana",
+          username: "Darshana",
+          password: "Darshana123",
+          createdAt: formatDate(),
+          updatedAt: formatDate(),
+          bio: "Currently saying yes to new adventures",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604389/ingram/img-8_lhkw0a.jpg",
+          website: "www.darshana.co",
+        },
+        {
+          _id: 4,
+          firstName: "G",
+          lastName: "Kiran",
+          username: "Kiran",
+          password: "Kiran123",
+          createdAt: formatDate(),
+          updatedAt: formatDate(),
+          bio: "It took me 25 years to look like this",
+          image:
+            "https://res.cloudinary.com/dxj7py6nj/image/upload/v1656604409/ingram/img-6_xacqon.jpg",
+          website: "www.kiran.in",
+        },
+      ],
       dislikedBy: [],
     },
     username: "Darshana",

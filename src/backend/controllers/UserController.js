@@ -35,6 +35,24 @@ export const getUserHandler = function (schema, request) {
   }
 };
 
+export const getUsersBySearchHandler = function (schema, request) {
+  const searchText = request.params.searchText;
+  try {
+    const users = this.db.users.filter(({ username }) => {
+      return username.toLowerCase().includes(searchText.toLowerCase());
+    });
+    return new Response(200, {}, { users });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
 /**
  * This handler handles updating user details.
  * send POST Request at /api/users/edit

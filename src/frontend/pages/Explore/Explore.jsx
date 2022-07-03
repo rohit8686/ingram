@@ -36,6 +36,10 @@ export const Explore = () => {
     dispatch(getPostsByPageData(pageNumber));
   }, [dispatch, pageNumber, posts]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="p-2">
       <div>
