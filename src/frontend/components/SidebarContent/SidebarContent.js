@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const SidebarContent = () => {
   return (
-    <div className="w-1/2 md:inline-block sm:w-1/2 md:w-1/3 sticky top-0">
+    <div className="sticky top-0">
       <NavLink
         to="/home"
         className={({ isActive }) =>

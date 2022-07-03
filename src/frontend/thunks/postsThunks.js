@@ -84,6 +84,41 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const editPost = createAsyncThunk(
+  "post/createPost",
+  async ({ _id, postText, postImage, encodedToken }, { rejectWithValue }) => {
+    const postData = {
+      content: { postText, postImage },
+    };
+    try {
+      const res = await axios.post(
+        `/api/posts/edit/${_id}`,
+        { postData },
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      return res;
+    } catch (e) {
+      return rejectWithValue("Error in editing post");
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  "post/createPost",
+  async ({ _id, encodedToken }, { rejectWithValue }) => {
+    try {
+      const res = await axios.delete(`/api/posts/${_id}`, {
+        headers: { authorization: encodedToken },
+      });
+      return res;
+    } catch (e) {
+      return rejectWithValue("Error in deleting post");
+    }
+  }
+);
+
 export const addComment = createAsyncThunk(
   "posts/addComment",
   async ({ _id, text, encodedToken }, { rejectWithValue }) => {
@@ -99,6 +134,20 @@ export const addComment = createAsyncThunk(
       return { res, _id };
     } catch (e) {
       rejectWithValue("Error in adding comment");
+    }
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  "posts/deleteComment",
+  async ({ _id, postId, encodedToken }, { rejectWithValue }) => {
+    try {
+      const res = await axios.delete(`/api/comments/delete/${postId}/${_id}`, {
+        headers: { authorization: encodedToken },
+      });
+      return { res, _id };
+    } catch (e) {
+      rejectWithValue("Error in deleting comment");
     }
   }
 );

@@ -209,7 +209,7 @@ export const SinglePost = () => {
                 </span>
               </button>
             </div>
-            <Comments comments={comments} />
+            <Comments comments={comments} postId={_id} />
           </div>
           {showLikes && (
             <LikedByModal likes={likes} setShowLikes={setShowLikes} />

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { bookmarkPost, getUser, removeBookmark } from "../../thunks/usersThunk";
 import { LikedByModal } from "../LikedByModal/LikedByModal";
 import { useState } from "react";
+import { PostsOptions } from "../PostOptions/PostOptions";
 
 export const Post = ({ post }) => {
   const [showLikes, setShowLikes] = useState(false);
@@ -17,6 +18,7 @@ export const Post = ({ post }) => {
   const navigate = useNavigate();
   const { userData, encodedToken } = useSelector((state) => state.auth);
   const { bookmarks } = useSelector((state) => state.users);
+  const [showPostOptions, setShowPostOptions] = useState(false);
 
   const likePostHandler = async () => {
     const res = await dispatch(likePost({ _id, encodedToken }));
@@ -77,12 +79,23 @@ export const Post = ({ post }) => {
           >
             {username}
           </h1>
-          <p
-            className="text-sm cursor-pointer"
-            onClick={() => navigate(`/posts/${_id}`)}
-          >
-            {timeSince(createdAt)}
-          </p>
+          <div className="flex items-center gap-1 relative">
+            <p
+              className="text-sm cursor-pointer"
+              onClick={() => navigate(`/posts/${_id}`)}
+            >
+              {timeSince(createdAt)}
+            </p>
+            {userData._id === userId && (
+              <span
+                className="material-icons-outlined cursor-pointer"
+                onClick={() => setShowPostOptions((prev) => !prev)}
+              >
+                more_vert
+              </span>
+            )}
+            {showPostOptions && <PostsOptions post={post} />}
+          </div>
         </div>
         <p
           className="text-left cursor-pointer"
