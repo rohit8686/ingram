@@ -45,7 +45,7 @@ export const EditProfileModal = ({ setShowEditProfile, userData }) => {
         <Image
           cloudName={process.env.REACT_APP_CLOUD_NAME}
           publicId={image}
-          className="object-contain pt-2 w-14 h-14 cursor-pointer rounded-full"
+          className="object-contain mt-2 w-14 h-14 cursor-pointer rounded-full"
         />
         <div className="mt-2">
           <label htmlFor="username">

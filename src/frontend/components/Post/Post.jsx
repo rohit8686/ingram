@@ -113,7 +113,10 @@ export const Post = ({ post }) => {
           />
         )}
         {likes.likedBy.length > 1 && (
-          <p className="pt-4 text-sm text-red-400/75">
+          <p
+            className="pt-4 text-sm text-red-400/75 cursor-pointer"
+            onClick={() => setShowLikes(!showLikes)}
+          >
             Liked by {likes?.likedBy[0]?.username} and{" "}
             {likes?.likedBy?.length - 1} others
           </p>
@@ -173,7 +176,17 @@ export const Post = ({ post }) => {
           >
             bookmark
           </span>
-          <span className="material-icons-outlined cursor-pointer">share</span>
+          <span
+            className="material-icons-outlined cursor-pointer"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `https://in-gram.netlify.app/posts/${_id}`
+              );
+              toastContainer("Copied to clipboard !", "success");
+            }}
+          >
+            share
+          </span>
         </div>
         <div className="relative" onClick={() => navigate(`/posts/${_id}`)}>
           <input

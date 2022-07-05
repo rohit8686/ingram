@@ -29,7 +29,8 @@ export const Comments = ({ comments, postId }) => {
             <Image
               cloudName="dxj7py6nj"
               publicId={image}
-              className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover"
+              className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover cursor-pointer"
+              onClick={() => navigate(`/profile/${userId}`)}
             />
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between items-center">

@@ -109,7 +109,9 @@ export const createPostHandler = function (schema, request) {
         dislikedBy: [],
       },
       username: user.username,
-      image: user.image,
+      image: user.image
+        ? user.image
+        : "https://res.cloudinary.com/dxj7py6nj/image/upload/v1655890516/ingram/profile_t8on9b.png",
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };
