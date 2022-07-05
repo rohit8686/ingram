@@ -20,7 +20,7 @@ export const Navbar = () => {
           >
             menu
           </span>
-          <Link to="/">
+          <Link to="/home">
             <p className="text-2xl font-bold">Ingram</p>
           </Link>
         </div>

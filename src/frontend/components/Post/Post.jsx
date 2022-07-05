@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { bookmarkPost, getUser, removeBookmark } from "../../thunks/usersThunk";
 import { LikedByModal } from "../LikedByModal/LikedByModal";
 import { useState } from "react";
+import { PostsOptions } from "../PostOptions/PostOptions";
 
 export const Post = ({ post }) => {
   const [showLikes, setShowLikes] = useState(false);
@@ -17,6 +18,7 @@ export const Post = ({ post }) => {
   const navigate = useNavigate();
   const { userData, encodedToken } = useSelector((state) => state.auth);
   const { bookmarks } = useSelector((state) => state.users);
+  const [showPostOptions, setShowPostOptions] = useState(false);
 
   const likePostHandler = async () => {
     const res = await dispatch(likePost({ _id, encodedToken }));
@@ -77,12 +79,23 @@ export const Post = ({ post }) => {
           >
             {username}
           </h1>
-          <p
-            className="text-sm cursor-pointer"
-            onClick={() => navigate(`/posts/${_id}`)}
-          >
-            {timeSince(createdAt)}
-          </p>
+          <div className="flex items-center gap-1 relative">
+            <p
+              className="text-sm cursor-pointer"
+              onClick={() => navigate(`/posts/${_id}`)}
+            >
+              {timeSince(createdAt)}
+            </p>
+            {userData._id === userId && (
+              <span
+                className="material-icons-outlined cursor-pointer"
+                onClick={() => setShowPostOptions((prev) => !prev)}
+              >
+                more_vert
+              </span>
+            )}
+            {showPostOptions && <PostsOptions post={post} />}
+          </div>
         </div>
         <p
           className="text-left cursor-pointer"
@@ -100,7 +113,10 @@ export const Post = ({ post }) => {
           />
         )}
         {likes.likedBy.length > 1 && (
-          <p className="pt-4 text-sm text-red-400/75">
+          <p
+            className="pt-4 text-sm text-red-400/75 cursor-pointer"
+            onClick={() => setShowLikes(!showLikes)}
+          >
             Liked by {likes?.likedBy[0]?.username} and{" "}
             {likes?.likedBy?.length - 1} others
           </p>
@@ -160,7 +176,17 @@ export const Post = ({ post }) => {
           >
             bookmark
           </span>
-          <span className="material-icons-outlined cursor-pointer">share</span>
+          <span
+            className="material-icons-outlined cursor-pointer"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `https://in-gram.netlify.app/posts/${_id}`
+              );
+              toastContainer("Copied to clipboard !", "success");
+            }}
+          >
+            share
+          </span>
         </div>
         <div className="relative" onClick={() => navigate(`/posts/${_id}`)}>
           <input

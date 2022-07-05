@@ -9,6 +9,9 @@ import {
   dislikePost,
   getPostsByUser,
   getPostsByUserForProfile,
+  editPost,
+  deletePost,
+  deleteComment,
 } from "../thunks/postsThunks";
 
 const initialState = {
@@ -97,6 +100,20 @@ const postsSlice = createSlice({
       state.errorMsg = action.payload;
     },
 
+    [editPost.fulfilled]: (state, action) => {
+      state.posts = action.payload.data.posts;
+    },
+    [editPost.rejected]: (state, action) => {
+      state.errorMsg = action.payload;
+    },
+
+    [deletePost.fulfilled]: (state, action) => {
+      state.posts = action.payload.data.posts;
+    },
+    [deletePost.rejected]: (state, action) => {
+      state.errorMsg = action.payload;
+    },
+
     [addComment.fulfilled]: (state, action) => {
       const { res, _id } = action.payload;
       const comments = res.data.comments;
@@ -105,6 +122,17 @@ const postsSlice = createSlice({
       );
     },
     [addComment.rejected]: (state, action) => {
+      state.errorMsg = action.payload;
+    },
+
+    [deleteComment.fulfilled]: (state, action) => {
+      const { res, _id } = action.payload;
+      const comments = res.data.comments;
+      state.posts = state.posts.map((post) =>
+        post._id === _id ? { ...post, comments } : post
+      );
+    },
+    [deleteComment.rejected]: (state, action) => {
       state.errorMsg = action.payload;
     },
 

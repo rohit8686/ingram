@@ -15,7 +15,7 @@ export const SearchResults = ({
         return (
           <div
             key={_id}
-            className="flex items-center gap-2 my-1"
+            className="flex items-center gap-2 my-1 cursor-pointer"
             onClick={() => {
               navigate(`profile/${_id}`);
               setIsSearchEmpty(true);

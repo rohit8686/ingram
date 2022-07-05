@@ -99,13 +99,13 @@ export const SinglePost = () => {
           <Image
             cloudName={process.env.REACT_APP_CLOUD_NAME}
             publicId={image}
-            className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover"
+            className="w-6 h-6 rounded-full md:w-10 md:h-10 object-cover cursor-pointer"
             onClick={() => navigate(`/profile/${userId}`)}
           />
           <div className="flex flex-grow flex-col">
             <div className="flex justify-between items-center">
               <h1
-                className="text-lg text-red-400"
+                className="text-lg text-red-400 cursor-pointer"
                 onClick={async () => {
                   const res = await dispatch(getUser({ userId }));
                   if ([200, 201].includes(res.payload.status)) {
@@ -128,7 +128,10 @@ export const SinglePost = () => {
               />
             )}
             {likes?.likedBy?.length > 1 && (
-              <p className="pt-4 text-sm text-red-400/75">
+              <p
+                className="pt-4 text-sm text-red-400/75 cursor-pointer"
+                onClick={() => setShowLikes(!showLikes)}
+              >
                 Liked by {likes?.likedBy[0]?.username} and{" "}
                 {likes?.likedBy?.length - 1} others
               </p>
@@ -189,7 +192,15 @@ export const SinglePost = () => {
               >
                 bookmark
               </span>
-              <span className="material-icons-outlined cursor-pointer">
+              <span
+                className="material-icons-outlined cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `https://in-gram.netlify.app/posts/${_id}`
+                  );
+                  toastContainer("Copied to clipboard !", "success");
+                }}
+              >
                 share
               </span>
             </div>
@@ -209,7 +220,7 @@ export const SinglePost = () => {
                 </span>
               </button>
             </div>
-            <Comments comments={comments} />
+            <Comments comments={comments} postId={_id} />
           </div>
           {showLikes && (
             <LikedByModal likes={likes} setShowLikes={setShowLikes} />

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../Post/Post";
 import { getPostsByUser, getPostsData } from "../../thunks/postsThunks";
 import { PostsFilter } from "../PostsFilter/PostsFilter";
+import { useNavigate } from "react-router-dom";
 
 export const Posts = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export const Posts = () => {
   const [showFilter, setShowFilter] = useState(false);
   const { posts, userPosts } = useSelector((state) => state.posts);
   const { userData } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const followersPosts = [
     ...posts.filter((post) =>
@@ -73,19 +75,33 @@ export const Posts = () => {
             <PostsFilter setFilter={setFilter} setShowFilter={setShowFilter} />
           )}
         </div>
-        <div>
-          {(
-            (filter === "latestPosts" && latestPosts) ||
-            (filter === "oldestPosts" && oldestPosts) ||
-            (filter === "trendingPosts" && trendingPosts)
-          ).map((post) => {
-            return (
-              <div key={post._id}>
-                <Post post={post} />
-              </div>
-            );
-          })}
-        </div>
+        {followersPosts.length === 0 ? (
+          <>
+            <p className="text-center text-xl">
+              Follow users to see their posts here or create posts.
+            </p>
+            <button
+              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-4 py-1.5 text-center mx-auto block mt-2"
+              onClick={() => navigate("/explore")}
+            >
+              Explore
+            </button>
+          </>
+        ) : (
+          <div>
+            {(
+              (filter === "latestPosts" && latestPosts) ||
+              (filter === "oldestPosts" && oldestPosts) ||
+              (filter === "trendingPosts" && trendingPosts)
+            ).map((post) => {
+              return (
+                <div key={post._id}>
+                  <Post post={post} />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );
