@@ -192,7 +192,15 @@ export const SinglePost = () => {
               >
                 bookmark
               </span>
-              <span className="material-icons-outlined cursor-pointer">
+              <span
+                className="material-icons-outlined cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `https://in-gram.netlify.app/posts/${_id}`
+                  );
+                  toastContainer("Copied to clipboard !", "success");
+                }}
+              >
                 share
               </span>
             </div>
